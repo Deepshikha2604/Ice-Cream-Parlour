@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block Content %}
+<div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3 mt-lg-5">SignUp</h1>
+        <div class="d-inline-flex align-items-center text-white">
+            <p class="m-0"><a class="text-white" href="/">Home</a></p>
+            <i class="fa fa-circle px-3"></i>
+            <p class="m-0">SignUp</p>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 custom-form">
+            <form action="{% url 'profile' %}" method="POST" novalidate class="needs-validation">
+                {% csrf_token %}
+                {% for fm in form %}
+                    <div class="form-group">
+                        {{ fm.label_tag }}
+                        {{ fm }}
+                        <small class="text-danger">{{ fm.errors|striptags }}</small>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">SignUp</button>
+                <br><br>
+                <p><a href="{% url 'login' %}">Already have an account? Click Here</a></p>
+
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <p class="er">{{error}}</p>
+                    {% endfor %}
+                {% endif %}
+            </form>
+
+            <br>
+
+            <!-- <a class="btn btn-outline-primary" href="{% url 'login' %}">Login</a> -->
+
+            {% if messages %}
+                {% for message in messages %}
+                    <small class="d-block mt-2 {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and Popper.js (optional) -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+{% endblock Content %}
