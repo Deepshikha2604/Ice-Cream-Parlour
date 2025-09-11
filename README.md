@@ -128,10 +128,4 @@ This project is licensed under the **MIT License**.
 
 **👩‍💻 Developed by \[Deepshikha]**
 
-```
 
----
-
-If you want, I can **also prepare the `.gitignore` and `.env` setup** so your sensitive data stays safe before uploading to GitHub.  
-Do you want me to include that with this README?
-```
